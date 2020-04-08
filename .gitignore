@@ -1,5 +1,4 @@
 HELP.md
-spring-shell.log
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
@@ -31,3 +30,7 @@ build/
 ### VS Code ###
 .vscode/
 /.mvn/
+
+### logs ####
+*.log
+/spring-shell.log
