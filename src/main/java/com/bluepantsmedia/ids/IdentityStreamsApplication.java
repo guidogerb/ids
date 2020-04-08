@@ -22,7 +22,7 @@ public class IdentityStreamsApplication implements CommandLineRunner {
 
 
 	public static void main(String[] args) {
-		LOG.info("STARTING THE APPLICATION VERSION: " + Version.VERSION);
+		LOG.info("STARTING IDS");
 		SpringApplication.run(IdentityStreamsApplication.class, args);
 		LOG.info("APPLICATION FINISHED");
 	}
