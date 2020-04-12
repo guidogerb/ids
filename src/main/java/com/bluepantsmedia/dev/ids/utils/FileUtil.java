@@ -1,11 +1,11 @@
-package com.bluepantsmedia.ids.utils;
+package com.bluepantsmedia.dev.ids.utils;
 
 /**
- * @Project Identity Streams
- * @Author Gary Gerber
- * @Email garygerber@bluepantsmedia.com
- * @Date 4/7/2020 5:42 PM
- * @Copyright 2020 by Bluepants Media, LLC
+ * Project Identity Streams
+ * Author Gary Gerber
+ * Email garygerber@bluepantsmedia.com
+ * Date 4/7/2020 5:42 PM
+ * Copyright 2020 by Bluepants Media, LLC
  */
 
 import lombok.NonNull;
@@ -16,7 +16,7 @@ import java.nio.channels.OverlappingFileLockException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileUtils {
+public class FileUtil {
 
     public static final List<String> readFile(@NonNull final File file) {
         List<String> result = new ArrayList<String>();

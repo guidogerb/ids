@@ -1,11 +1,11 @@
-package com.bluepantsmedia.ids.utils;
+package com.bluepantsmedia.dev.ids.utils;
 
 /**
- * @Project Identity Streams
- * @Author Gary Gerber
- * @Email garygerber@bluepantsmedia.com
- * @Date 4/7/2020 5:42 PM
- * @Copyright 2020 by Bluepants Media, LLC
+ * Project Identity Streams
+ * Author Gary Gerber
+ * Email garygerber@bluepantsmedia.com
+ * Date 4/7/2020 5:42 PM
+ * Copyright 2020 by Bluepants Media, LLC
  * From comments by phatfingers and CookieNinja on stackoverflow
  * https://stackoverflow.com/questions/15736626/java-how-to-create-and-manipulate-a-bit-array-with-length-of-10-million-bits
  */

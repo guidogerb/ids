@@ -5,14 +5,59 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.0.M6</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>2.2.6.RELEASE</version>
+		<relativePath/>
 	</parent>
-	<groupId>com.bluepantsmedia.ids</groupId>
-	<artifactId>identityStreams</artifactId>
+	<groupId>com.bluepantsmedia.dev.ids</groupId>
+	<!-- GUID = UUIDv5 (NAMESPACE_URL + "bluepantsmedia.com") -->
+	<!-- 87f859f9-beca-5e06-83e1-801cd8f4e090 -->
+	<artifactId>bluepantsmedia-ids</artifactId>
 	<version>${project.build.finalName}</version>
-	<name>identityStreams</name>
-	<description>Spring Boot Identity Streams</description>
+	<packaging>jar</packaging>
+
+	<name>Bluepants Media IDS - Identity Streams</name>
+	<description>Bluepants Media IDS is a reduction library to
+		compress/extract Unicode CharacterSets for ETL </description>
+	<url>https://github.com/guidogerb/ids</url>
+	<inceptionYear>2020</inceptionYear>
+	<organization>
+		<name>Bluepants Media, LLC</name>
+		<url>http://bluepantsmedia.com</url>
+	</organization>
+	<licenses>
+		<license>
+			<name>Apache License Version 2.0, January 2004</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
+		</license>
+	</licenses>
+	<scm>
+		<url>https://github.com/guidogerb/ids</url>
+		<connection>scm:git:git://github.com/guidogerb/ids.git</connection>
+		<developerConnection>scm:git:git@github.com:guidogerb/ids.git</developerConnection>
+	</scm>
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/guidogerb/ids/issues</url>
+	</issueManagement>
+	<developers>
+		<developer>
+			<id>guidogerb</id>
+			<name>Gary Gerber</name>
+			<email>garygerber@bluepantsmedia.com</email>
+			<url>http://bluepantsmedia.com</url>
+			<organization>Bluepants Media, LLC</organization>
+			<organizationUrl>http://bluepantsmedia.com</organizationUrl>
+			<roles>
+				<role>architect</role>
+				<role>developer</role>
+			</roles>
+			<timezone>America/Mountain Standard Time</timezone>
+			<properties>
+				<picUrl>http://bluepantsmedia.synology.me/web_images/guidogerb.jpg</picUrl>
+			</properties>
+		</developer>
+	</developers>
+
 
 	<!--
 		helpful maven command: mvn help:evaluate
@@ -20,6 +65,8 @@
 	-->
 	<properties>
 		<java.version>1.8</java.version>
+		<spring.shell.version>2.0.1.RELEASE</spring.shell.version>
+		<lombok.verion>1.18.12</lombok.verion>
 		<maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
 		<ver.package.dir>com/bluepantsmedia/ids</ver.package.dir>
 		<ver.package.name>com.bluepantsmedia.ids</ver.package.name>
@@ -27,6 +74,7 @@
 		<ver.buildtime>${maven.build.timestamp}</ver.buildtime>
 		<ver.template.dir>src/main/resources/version</ver.template.dir>
 		<ver.template.file>VersionJava.template</ver.template.file>
+		<juniversalchardet.version>2.3.2</juniversalchardet.version>
 	</properties>
 
 	<dependencies>
@@ -37,14 +85,20 @@
 		<dependency>
 			<groupId>org.springframework.shell</groupId>
 			<artifactId>spring-shell-starter</artifactId>
-			<version>2.0.1.RELEASE</version>
+			<version>${spring.shell.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.12</version>
+			<version>${lombok.verion}</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.github.albfernandez</groupId>
+			<artifactId>juniversalchardet</artifactId>
+			<version>${juniversalchardet.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -54,6 +108,35 @@
 			</resource>
 		</resources>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.0.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.2.0</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<source>${java.version}</source>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>ru.concerteza.buildnumber</groupId>
 				<artifactId>maven-jgit-buildnumber-plugin</artifactId>
@@ -87,22 +170,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-		<finalName>0.0.1-SNAPSHOT-${git.buildnumber}-${ver.buildtime}</finalName>
+		<finalName>${git.buildnumber}-${ver.buildtime}-SNAPSHOT</finalName>
 	</build>
-
-	<repositories>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-		</repository>
-	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-		</pluginRepository>
-	</pluginRepositories>
 
 </project>

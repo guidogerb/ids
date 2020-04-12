@@ -1,14 +1,15 @@
-package com.bluepantsmedia.ids.components;
+package com.bluepantsmedia.dev.ids.components;
 
 /**
- * @Project Identity Streams
- * @Author Gary Gerber
- * @Email garygerber@bluepantsmedia.com
- * @Date 4/7/2020 5:42 PM
- * @Copyright 2020 by Bluepants Media, LLC
+ * Project Identity Streams
+ * Author Gary Gerber
+ * Email garygerber@bluepantsmedia.com
+ * Date 4/7/2020 5:42 PM
+ * Copyright 2020 by Bluepants Media, LLC
  */
 
 
+import org.mozilla.universalchardet.UniversalDetector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,10 +28,9 @@ import java.util.stream.Stream;
 
 @ShellComponent
 @PropertySource("classpath:application.properties")
-public class ProcessDictionaries {
+public class ShellMethods {
 
-    private static Logger LOG = LoggerFactory
-            .getLogger(ProcessDictionaries.class);
+    private static Logger LOG = LoggerFactory.getLogger(ShellMethods.class);
 
     @Value( "${files.path}" )
     private String filesPath;
@@ -130,6 +130,43 @@ public class ProcessDictionaries {
 		}
 		 */
 		return "Success";
+    }
+
+    @ShellMethod("Detect Charset")
+    public String detect() {
+        byte[] buf = new byte[4096];
+        List<String> fileNames = new ArrayList<>();
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream("fileName");
+
+            // (1)
+            UniversalDetector detector = new UniversalDetector(null);
+
+            // (2)
+            int nread;
+            while ((nread = fis.read(buf)) > 0 && !detector.isDone()) {
+                detector.handleData(buf, 0, nread);
+            }
+
+            // (3)
+            detector.dataEnd();
+
+            // (4)
+            String encoding = detector.getDetectedCharset();
+            if (encoding != null) {
+                LOG.info("Detected encoding = " + encoding);
+            } else {
+                LOG.info("No encoding detected.");
+            }
+
+            // (5)
+            detector.reset();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "Success";
     }
 
     @ShellMethod("Test Filesystem capability with large enum class files")
