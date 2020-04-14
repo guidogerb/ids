@@ -9,6 +9,8 @@ package com.bluepantsmedia.dev.ids.components;
  */
 
 
+import com.bluepantsmedia.dev.ids.Version;
+import com.bluepantsmedia.dev.ids.enums.CharsetNames;
 import org.mozilla.universalchardet.UniversalDetector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,6 +52,11 @@ public class ShellMethods {
     private static final Map<String, Long> uniqueStringsCounts = new HashMap<String,Long>();
 
     private static File consumedFilesLog = null;
+
+    @ShellMethod("Get Charset IDS-64 version")
+    public String version() {
+        return "Jar Version: " + Version.VERSION + ", IDS-64 Version: " + CharsetNames.IDS_64.version;
+    }
 
     @ShellMethod("List dictionaries")
     public String all() {

@@ -3,6 +3,8 @@ package com.bluepantsmedia.dev.ids.enums;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.bluepantsmedia.dev.ids.Version;
+
 /**
  * Project Identity Streams
  * Author Gary Gerber
@@ -14,7 +16,10 @@ public enum CharsetNames  implements ILabeled {
     UTF_8("UTF-8","13.0",1)
     , UTF_16("UTF-16","13.0",2)
     , UTF_32("UTF-32","13.0",3)
-    , IDS_64("IDS-64","0.0.1-SNAPSHOT",4);
+    , IDS_64("IDS-64",CharsetNames.VERSION,4);
+
+    // private static final String VERSION = "1.0.0-SNAPSHOT"; // use this if build was cleaned previous to package
+    private static final String VERSION = Version.VERSION;
 
     public final String label;
     public final String version;

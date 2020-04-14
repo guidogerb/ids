@@ -38,6 +38,7 @@ public class UUIDUtil {
     /**
      * Unique Keys Generation Using Message Digest and Type 4 UUID
      * 64 hexidecimal chars (32 hexidecimal pairs) = 256 bits
+     * @return bytes to hex string
      *
      */
     public static String generateKey() {
@@ -57,6 +58,9 @@ public class UUIDUtil {
     /**
      * UUIDv5 Generator
      * 32 hexidecimal chars (0x00000000-0x0000-0x0000-0x0000-0x000000000000) = 128 bits
+     * @param namespace
+     * @param name
+     * @return type 5 UUID
      *
      */
     public static UUID createType5UUID(String namespace, String name) {

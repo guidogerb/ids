@@ -26,8 +26,20 @@
 	</organization>
 	<licenses>
 		<license>
+			<name>GNU General Public License</name>
+			<url>https://www.gnu.org/licenses/gpl-2.0.html</url>
+		</license>
+		<license>
+			<name>GNU General Public License</name>
+			<url>https://www.gnu.org/licenses/gpl-3.0.html</url>
+		</license>
+		<license>
 			<name>Apache License Version 2.0, January 2004</name>
 			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
+		</license>
+		<license>
+			<name>Unicode, Inc. License Agreement - Data Files and Software</name>
+			<url>https://www.unicode.org/license.html</url>
 		</license>
 	</licenses>
 	<scm>
@@ -68,12 +80,12 @@
 		<spring.shell.version>2.0.1.RELEASE</spring.shell.version>
 		<lombok.verion>1.18.12</lombok.verion>
 		<maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
-		<ver.package.dir>com/bluepantsmedia/ids</ver.package.dir>
-		<ver.package.name>com.bluepantsmedia.ids</ver.package.name>
+		<ver.package.dir>com/bluepantsmedia/dev/ids</ver.package.dir>
+		<ver.package.name>com.bluepantsmedia.dev.ids</ver.package.name>
 		<ver.class.name>Version</ver.class.name>
 		<ver.buildtime>${maven.build.timestamp}</ver.buildtime>
-		<ver.template.dir>src/main/resources/version</ver.template.dir>
-		<ver.template.file>VersionJava.template</ver.template.file>
+		<ver.template.dir>src/main/java-templates/com/bluepantsmedia/dev/ids/</ver.template.dir>
+		<ver.template.file>Version.java</ver.template.file>
 		<juniversalchardet.version>2.3.2</juniversalchardet.version>
 	</properties>
 

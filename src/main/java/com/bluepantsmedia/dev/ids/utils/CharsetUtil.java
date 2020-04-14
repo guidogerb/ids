@@ -28,8 +28,36 @@ public class CharsetUtil {
     private static Logger LOG = LoggerFactory.getLogger(CharsetUtil.class);
 
     public static final void main(String[] args) {
+        transcodeEbcdicTest();
+        System.setProperty("ibm.swapLF", "true");
+        transcodeEbcdicTest();
+        System.setProperty("ibm.swapLF", "false");
         LOG.info(String.valueOf(Charset.defaultCharset()));
         LOG.info("10111011 01111001 = " + convertToBinary("語", "Big5"));
+    }
+
+    public static void transcodeEbcdicTest() {
+        byte EBCDIC_NL = 0x15; //next line
+        byte EBCDIC_LF = 0x25; //line feed
+        byte EBCDIC_CR = 0x0D; //carriage return
+
+        LOG.info(ebcdicToUtf16(EBCDIC_NL));
+        LOG.info(ebcdicToUtf16(EBCDIC_LF));
+        LOG.info(ebcdicToUtf16(EBCDIC_CR));
+
+        LOG.info(utf16ToEbcdic("\u0085")); //next line
+        LOG.info(utf16ToEbcdic("\n")); //line feed
+        LOG.info(utf16ToEbcdic("\r")); //carriage return
+    }
+
+    public static String ebcdicToUtf16(byte... b) {
+        String utf16 = new String(b, Charset.forName("IBM500"));
+        return String.format("%02x -> %04x%n", b[0] & 0xFF, utf16.charAt(0) & 0xFFFF);
+    }
+
+    public static String utf16ToEbcdic(String s) {
+        byte[] b = s.getBytes(Charset.forName("IBM500"));
+        return String.format("%04x -> %02x%n", s.charAt(0) & 0xFFFF, b[0] & 0xFF);
     }
 
     public static byte[] getByteArrayFromString(String input, CharsetNames charsetNames) {
