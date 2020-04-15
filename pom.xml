@@ -182,7 +182,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-		<finalName>${git.buildnumber}-${ver.buildtime}-SNAPSHOT</finalName>
+		<finalName>${artifactId}-${git.buildnumber}-${ver.buildtime}-SNAPSHOT</finalName>
 	</build>
 
 </project>
