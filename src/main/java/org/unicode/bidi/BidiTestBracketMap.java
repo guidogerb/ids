@@ -5,8 +5,6 @@ package org.unicode.bidi;
  * Distributed under the Terms of Use in http://www.unicode.org/copyright.html.
  */
 
- import org.unicode.bidi.BidiPBAReference;
-
 public abstract class BidiTestBracketMap {
 	/**
 	 * getPairedBracket - given one character of a bracket pair return the other

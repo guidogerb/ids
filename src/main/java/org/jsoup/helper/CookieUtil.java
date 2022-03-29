@@ -4,18 +4,8 @@ import org.jsoup.Connection;
 import org.jsoup.internal.StringUtil;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.net.*;
+import java.util.*;
 
 /**
  Helper functions to support the Cookie Manager / Cookie Storage in HttpConnection.

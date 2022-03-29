@@ -4,12 +4,7 @@ import com.bluepantsmedia.ids.process.Block;
 import com.bluepantsmedia.ids.process.Id;
 import lombok.NonNull;
 import org.apache.commons.lang3.ArrayUtils;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
-import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.BitSet;
@@ -29,11 +24,26 @@ public class BitSetUtil {
     private static final String _26000_26FFF = "https://en.wikibooks.org/wiki/Unicode/Character_reference/26000-26FFF";
     private static final String wikiUnicode = "https://en.wikipedia.org/wiki/List_of_Unicode_characters";
     private static final String reference = "https://en.wikipedia.org/wiki/Unicode";
-    private static final String suffixes1 = "https://en.wiktionary.org/wiki/Category:English_suffixes";
+
+    private static final String MORPHEME_FORMS = "https://en.wiktionary.org/wiki/Category:English_morpheme_forms";
+    private static final String AFFIXES = "https://en.wiktionary.org/wiki/Category:English_affixes";
+    private static final String CIRCUMFIXES = "https://en.wiktionary.org/wiki/Category:English_circumfixes";
+    private static final String CLITICS = "https://en.wiktionary.org/wiki/Category:English_clitics";
+    private static final String INFIXES = "https://en.wiktionary.org/wiki/Category:English_infixes";
+    private static final String INTERFIXES = "https://en.wiktionary.org/wiki/Category:English_interfixes";
+    private static final String SUFFIXES1 = "https://en.wiktionary.org/wiki/Category:English_suffixes";
+    private static final String PREFIXES1 = "https://en.wiktionary.org/wiki/Category:English_prefixes";
+
+    private static final String fullWikitionary = System.getProperty("user.dir") + "\\files\\dictionaries\\wikidictionary\\raw-wiktextract-data.json";
+    private static final String categoryWikitionary = System.getProperty("user.dir") + "\\files\\dictionaries\\wikidictionary\\wiktionary-categories.json";
 
     public static void main(String[] args) {
+        final String file = fullWikitionary;
+        JsonUtils.printJsonFile(file);
+
+/*
         try {
-            Document page = Jsoup.connect(suffixes1).get();
+            Document page = Jsoup.connect(PREFIXES1).get();
             page.select("a").forEach(System.out::println);
             //Elements pElements =  page.select("body");
             //pElements.forEach(el -> System.out.println("section: " + el));
@@ -45,7 +55,6 @@ public class BitSetUtil {
             e.printStackTrace();
         }
 
-/*
         final List<Id> ids = new ArrayList<>();
         String num = "1234";
         for(int i = 1; i <= 10; i++) {

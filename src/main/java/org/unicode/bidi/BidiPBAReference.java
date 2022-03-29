@@ -57,7 +57,10 @@ package org.unicode.bidi;
  * @author Deepak Jois
  */
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.ListIterator;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 public class BidiPBAReference {
 

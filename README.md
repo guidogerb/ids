@@ -1,17 +1,27 @@
-# ids
-Bluepants Media, LLC Identity Streams
+# Identity Streams (IDS)
+
+Bluepants Media, LLC
 
 This is research and development reducing the bigdata footprint.
 
-A management information base (MIB) is a database used for managing the entities in a
-communication network.
+IDS is a system of globally distributed symbol tables.
+
+A simplified representation of a symbol table entry (or simply, a symbol) in Java has the following format: <symbol
+name (identifier), type, scope, [attributes]>. Given a global variable declaration like final double ratio; the
+corresponding symbol would then be <ratio, double, global, [final]>.
+
+This is also an argument for a 7th normal form (7NF) in data, representing a strategy for using these symbol tables to
+serialized data as nothing more than Identity Streams (IDS) where distributed symbol tables are used to compress all
+information into its series of identities.
+
+A management information base (MIB) is a database used for managing the entities in a communication network.
 
 Objects in the MIB are defined using a subset of Abstract Syntax Notation One (ASN.1)
-called "Structure of Management Information Version 2 (SMIv2)" RFC 2578.
-This software performs the parsing, and is an MIB compiler.
+called "Structure of Management Information Version 2 (SMIv2)" RFC 2578. This software performs the parsing, and is an
+MIB compiler.
 
-Abstract Syntax Notation One (ASN.1) is a standard and flexible notation that describes
-data structures for representing, encoding, transmitting, and decoding data.
+Abstract Syntax Notation One (ASN.1) is a standard and flexible notation that describes data structures for
+representing, encoding, transmitting, and decoding data.
 It provides a set of formal rules for describing the structure of objects that are
 independent of machine-specific encoding techniques and is a precise, formal notation
 that removes ambiguities.

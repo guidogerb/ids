@@ -47,11 +47,11 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
-\	<scm>
-		<url>https://github.com/guidogerb/ids</url>
-		<connection>scm:git:git://github.com/guidogerb/ids.git</connection>
-		<developerConnection>scm:git:git@github.com:guidogerb/ids.git</developerConnection>
-	</scm>
+	<scm>
+        <url>https://github.com/guidogerb/ids</url>
+        <connection>scm:git:git://github.com/guidogerb/ids.git</connection>
+        <developerConnection>scm:git:git@github.com:guidogerb/ids.git</developerConnection>
+    </scm>
 	<issueManagement>
 		<system>GitHub</system>
 		<url>https://github.com/guidogerb/ids/issues</url>
@@ -93,8 +93,10 @@
 		<juniversalchardet.version>2.3.2</juniversalchardet.version>
 		<tensorflow.version>1.15.0</tensorflow.version>
 		<jsoup.version>1.14.3</jsoup.version>
+        <jackson-databind.version>2.13.2</jackson-databind.version>
 		<tensorflow-core.version>0.4.0</tensorflow-core.version>
 		<tika.version>2.3.0</tika.version>
+        <antlr4.version>4.9.3</antlr4.version>
 		<start-class>com.bluepantsmedia.ids.IdentityStreamsApplication</start-class>
 	</properties>
 
@@ -158,23 +160,39 @@
 		<dependency>
 			<groupId>org.apache.tika</groupId>
 			<artifactId>tika-langdetect</artifactId>
-			<version>${tika.version}</version>
-			<type>pom</type>
-		</dependency>
-		<dependency>
-			<!-- javax.annotations.nonnull, with Apache 2 (not GPL) license. Build time only. -->
-			<groupId>com.google.code.findbugs</groupId>
-			<artifactId>jsr305</artifactId>
-			<version>3.0.2</version>
-			<scope>provided</scope>
-		</dependency>
-<!--		<dependency>
-			<groupId>org.jsoup</groupId>
-			<artifactId>jsoup</artifactId>
-			<version>${jsoup.version}</version>
-		</dependency>-->
+            <version>${tika.version}</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <!-- javax.annotations.nonnull, with Apache 2 (not GPL) license. Build time only. -->
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <version>3.0.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-databind.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.antlr</groupId>
+            <artifactId>antlr4-runtime</artifactId>
+            <version>${antlr4.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.antlr</groupId>
+            <artifactId>antlr4-maven-plugin</artifactId>
+            <version>${antlr4.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-erlang</artifactId>
+            <version>1.4.6.RELEASE</version>
+        </dependency>
 
-	</dependencies>
+
+    </dependencies>
 
 	<build>
 		<resources>
@@ -196,22 +214,24 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.2.0</version>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-						<configuration>
-							<source>${java.version}</source>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+            <!--
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-javadoc-plugin</artifactId>
+                            <version>3.2.0</version>
+                            <executions>
+                                <execution>
+                                    <id>attach-javadocs</id>
+                                    <goals>
+                                        <goal>jar</goal>
+                                    </goals>
+                                    <configuration>
+                                        <source>${java.version}</source>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+            -->
 			<plugin>
 				<groupId>ru.concerteza.buildnumber</groupId>
 				<artifactId>maven-jgit-buildnumber-plugin</artifactId>
@@ -227,24 +247,43 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>templating-maven-plugin</artifactId>
-				<version>1.0.0</version>
-				<executions>
-					<execution>
-						<id>filtering-java-templates</id>
-						<goals>
-							<goal>filter-sources</goal>
-						</goals>
-						<phase>process-resources</phase>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>templating-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <executions>
+                    <execution>
+                        <id>filtering-java-templates</id>
+                        <goals>
+                            <goal>filter-sources</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.antlr</groupId>
+                <artifactId>antlr4-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>antlr4</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+        </plugins>
 		<finalName>${artifactId}-${git.buildnumber}-${ver.buildtime}-SNAPSHOT</finalName>
 	</build>
 

@@ -2,7 +2,6 @@ package org.jsoup.nodes;
 
 import org.jsoup.helper.Validate;
 
-import java.util.Collections;
 import java.util.List;
 
 abstract class LeafNode extends Node {

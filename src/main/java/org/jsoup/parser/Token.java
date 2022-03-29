@@ -5,8 +5,6 @@ import org.jsoup.nodes.Attributes;
 
 import javax.annotation.Nullable;
 
-import static org.jsoup.internal.Normalizer.lowerCase;
-
 /**
  * Parse tokens for the Tokeniser.
  */

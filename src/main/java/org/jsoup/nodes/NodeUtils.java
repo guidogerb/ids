@@ -4,7 +4,6 @@ import org.jsoup.helper.Validate;
 import org.jsoup.helper.W3CDom;
 import org.jsoup.parser.HtmlTreeBuilder;
 import org.jsoup.parser.Parser;
-import org.jsoup.select.Elements;
 import org.w3c.dom.NodeList;
 
 import java.util.List;

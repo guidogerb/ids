@@ -37,7 +37,6 @@ public class IdentityStreamsApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) {
 		log.info("EXECUTING : command line runner");
-
 		for (int i = 0; i < args.length; ++i) {
 			log.info("args[{}]: {}", i, args[i]);
 		}
