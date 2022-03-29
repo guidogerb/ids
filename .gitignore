@@ -34,3 +34,6 @@ build/
 ### logs ####
 *.log
 /spring-shell.log
+
+### local files - large dictionaries ###
+files/
