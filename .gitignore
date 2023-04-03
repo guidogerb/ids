@@ -1,3 +1,4 @@
+/.idea/
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -36,10 +37,12 @@ build/
 /spring-shell.log
 
 ### local files - large dictionaries ###
-largeFiles/
-/largeFile/
-/apps/
+/implementation/research/largeFile/
+/implementation/research/apps/tika-app-2.3.0.jar
 
-/src/main/resources/files/dictionaries/
-/src/main/resources/files/Unicode/
-/src/main/resources/files/music/
+/implementation/research/src/main/resources/files/dictionaries/
+/implementation/research/src/main/resources/files/Unicode/
+/implementation/research/src/main/resources/files/music/
+/implementation/research/implementation/research/apps/
+/implementation/research/target/
+/implementation/ids/target
