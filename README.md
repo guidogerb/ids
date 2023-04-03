@@ -1,5 +1,4 @@
 # Identity Streams (IDS)
-
 Bluepants Media, LLC
 
 This is research and development reducing the bigdata footprint.
