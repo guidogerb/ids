@@ -36,4 +36,10 @@ build/
 /spring-shell.log
 
 ### local files - large dictionaries ###
-files/
+largeFiles/
+/largeFile/
+/apps/
+
+/src/main/resources/files/dictionaries/
+/src/main/resources/files/Unicode/
+/src/main/resources/files/music/

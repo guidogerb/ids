@@ -97,7 +97,7 @@
 		<tensorflow-core.version>0.4.0</tensorflow-core.version>
 		<tika.version>2.3.0</tika.version>
         <antlr4.version>4.9.3</antlr4.version>
-		<start-class>com.bluepantsmedia.ids.IdentityStreamsApplication</start-class>
+		<start-class>org.bluepantsmedia.ids.IdentityStreamsApplication</start-class>
 	</properties>
 
 	<dependencies>
